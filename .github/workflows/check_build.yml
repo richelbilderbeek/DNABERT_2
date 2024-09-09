@@ -30,6 +30,6 @@ jobs:
       - name: install required packages
         run: python3 -m pip install -r requirements.txt
 
-      - name: run example code shown in README:
+      - name: run example code shown in README
         run: python3 .github/workflows/example_huggingface_v4_28.py
     

@@ -8,8 +8,11 @@ on:
     branches:
       - main
 jobs:
-  deploy:
+  check_build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        install_triton: [true, false]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -30,9 +33,21 @@ jobs:
       #- name: activate virtual python environment
       #  run: conda activate dna
 
+      - name: Install Triton
+        env:
+          INSTALL_TRITON: ${{ matrix.install_triton }}
+        run: |
+          if [[ "$INSTALL_TRITON" == true ]]
+          then 
+            git clone https://github.com/openai/triton.git
+            cd triton/python
+            pip install cmake; # build-time dependency
+            pip install -e .
+            cd -
+          fi
+
       - name: install required packages
         run: python3 -m pip install -r requirements.txt
 
       - name: run example code shown in README
         run: python3 .github/workflows/example_huggingface_v4_28.py
-    

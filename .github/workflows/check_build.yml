@@ -25,7 +25,7 @@ jobs:
         run: conda create -n dna python=3.8
 
       - name: init conda environment
-        run: conda init
+        run: conda init bash
 
       - name: activate virtual python environment
         run: conda activate dna

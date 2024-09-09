@@ -16,19 +16,19 @@ jobs:
         with:
           python-version: 3.8
 
-      - uses: conda-incubator/setup-miniconda@v3
-        with:
-          auto-update-conda: true
-          python-version: ${{ matrix.python-version }}
+      #- uses: conda-incubator/setup-miniconda@v3
+      #  with:
+      #    auto-update-conda: true
+      #    python-version: ${{ matrix.python-version }}
 
-      - name: create virtual python environment
-        run: conda create -n dna python=3.8
+      #- name: create virtual python environment
+      #  run: conda create -n dna python=3.8
 
-      - name: init conda environment
-        run: conda init bash
+      #- name: init conda environment
+      #  run: conda init bash
 
-      - name: activate virtual python environment
-        run: conda activate dna
+      #- name: activate virtual python environment
+      #  run: conda activate dna
 
       - name: install required packages
         run: python3 -m pip install -r requirements.txt
